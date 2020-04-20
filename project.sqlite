@@ -1,0 +1,28 @@
+select * from transactions;
+ 
+--Total money_in
+select sum(money_in) from transactions;
+ 
+--Total money_out
+select sum(money_out) from transactions;
+  
+--Total money_in transactions
+select count(money_in) from transactions;
+  
+--Total money_in transactions where bitcoin is the currency
+select count(money_in) from transactions
+where currency = 'BIT';
+
+--Largest transaction
+select max(money_in), max(money_out) from transactions;
+
+--Average money_in for the currency Ethereum
+select avg(money_in) from transactions
+where currency = 'ETH';
+
+--Create a ledger for different dates
+select date, round(avg(money_in), 2) as 'Average Buy', round(avg(money_out), 2) as 'Average Sell'
+from transactions
+group by 1;
+
+
